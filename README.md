@@ -34,8 +34,8 @@ A few motivating and useful examples of how your product can be used. Spice this
 5. Create a new Pull Request
 
 <!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/discordjs-commands.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/djs-commands.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/discordjs-commands
-[npm-downloads]: https://img.shields.io/npm/dt/discordjs-commands.svg
+[npm-downloads]: https://img.shields.io/npm/dt/djs-commands.svg
 [travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
