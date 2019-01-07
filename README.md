@@ -1,8 +1,7 @@
-# Product Name
+# djs-commands
 > An NPM Package to make creating new Discord.JS bots efficiently
 
 [![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
 [![Downloads Stats][npm-downloads]][npm-url]
 
 Discordjs-commands is a NPM module that adds in a command handler and helpful functions
@@ -24,19 +23,19 @@ A few motivating and useful examples of how your product can be used. Spice this
     * ADD: Readme, CommandHandler, and base stuff I need.
 
 
-[https://github.com/nedinator/github-link](https://github.com/dbader/)
+[https://github.com/nedinator/djs-commands](https://github.com/dbader/)
 
 ## Contributing
 
-1. Fork it (<https://github.com/yourname/yourproject/fork>)
+1. Fork it (<https://github.com/nedinator/djs-commands/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
 
 <!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/discordjs-commands.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/discordjs-commands
+[npm-downloads]: https://img.shields.io/npm/dt/discordjs-commands.svg
 [travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
