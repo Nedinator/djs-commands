@@ -92,5 +92,5 @@ module.exports = class test {
 
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/djs-commands.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/discordjs-commands
+[npm-url]: https://www.npmjs.com/package/djs-commands
 [npm-downloads]: https://img.shields.io/npm/dt/djs-commands.svg
