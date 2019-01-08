@@ -74,6 +74,8 @@ module.exports = class test {
     * UPDATE: Fixing file loader system
 * 1.2.0
     * FIX: Fixed the loading system, added usage examples, and fixed index file.
+* 1.2.1
+    * FIX: Forgot to change index.js file back to normal...
 
 
 [https://github.com/nedinator/djs-commands](https://github.com/nedinator/djs-commands)
