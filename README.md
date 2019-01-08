@@ -13,9 +13,55 @@ Discordjs-commands is a NPM module that adds in a command handler and helpful fu
 npm install djs-commands --save
 ```
 
-## Usage example
+## Setup guide
+*This is not a full Discord.JS bot tutorial. Please check out [TheSourceCode](https://www.youtube.com/channel/UCNXt2MrZaqfIBknamqwzeXA) for that.
 
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
+1) To start using the Command Handler after installation, we'll first need require djs-commands and create a new Command Handler with the proper folder name and prefixes.
+
+```js
+const { CommandHandler } = require("djs-commands")
+const CH = new CommandHandler({
+    folder: __dirname + '\\commands\\',
+    prefix: ['?', '??', 'tsc?']
+  });
+```
+
+2) Inside of the message event, we're going to do a little parsing and checking if they ran an available command or not.
+
+```js
+bot.on("message", (message) => {
+    if(message.channel.type === 'dm') return;
+    if(message.author.type === 'bot') return;
+    let args = message.content.split(" ");
+    let command = args[0];
+    let cmd = CH.getCommand(command);
+    if(!cmd) return;
+
+    try{
+        cmd.run(bot,message,args)
+    }catch(e){
+        console.log(e)
+    }
+
+});
+```
+
+3) And of course we're going to need a command file. So inside of your bot folder, create a folder called commands.
+
+```js
+module.exports = class test {
+    constructor(){
+            this.name = 'test',
+            this.alias = ['t'],
+            this.usage = '?test'
+    }
+
+    async run(bot, message, args) {
+        await message.delete();
+        message.reply(this.name + " worked!")
+    }
+}
+```
 
 ## Release History
 
@@ -25,9 +71,11 @@ A few motivating and useful examples of how your product can be used. Spice this
     * UPDATE: Changed system to work as module
 * 1.1.3
     * UPDATE: Fixing file loader system
+* 1.2.0
+    * FIX: Fixed the loading system, added usage examples, and fixed index file.
 
 
-[https://github.com/nedinator/djs-commands](https://github.com/dbader/)
+[https://github.com/nedinator/djs-commands](https://github.com/nedinator/djs-commands)
 
 ## Contributing
 

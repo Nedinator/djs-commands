@@ -24,7 +24,6 @@ class CommandHandler {
         console.log(`Found ${fileAmount} files to load!\n`);
 
         for (const f of jsFiles) {
-
             const file = require(folder + f);
             const cmd = new file();
 
