@@ -46,7 +46,8 @@ bot.on("message", (message) => {
 });
 ```
 
-3) And of course we're going to need a command file. So inside of your bot folder, create a folder called commands.
+3) And of course we're going to need a command file. So inside of your bot folder, create a folder called commands. I'm going to create a file called
+test.js and put the following code inside of it.
 
 ```js
 module.exports = class test {
