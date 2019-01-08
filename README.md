@@ -19,8 +19,12 @@ A few motivating and useful examples of how your product can be used. Spice this
 
 ## Release History
 
+* 1.0.0
+    * ADD: Readme, CommandHandler, and basic stuff I will need.
 * 1.1.0
-    * ADD: Readme, CommandHandler, and base stuff I need.
+    * UPDATE: Changed system to work as module
+* 1.1.3
+    * UPDATE: Fixing file loader system
 
 
 [https://github.com/nedinator/djs-commands](https://github.com/dbader/)
@@ -37,5 +41,3 @@ A few motivating and useful examples of how your product can be used. Spice this
 [npm-image]: https://img.shields.io/npm/v/djs-commands.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/discordjs-commands
 [npm-downloads]: https://img.shields.io/npm/dt/djs-commands.svg
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
