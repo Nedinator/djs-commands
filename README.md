@@ -16,17 +16,17 @@ npm install djs-commands --save
 ## Setup guide
 *This is not a full Discord.JS bot tutorial. Please check out [TheSourceCode](https://www.youtube.com/channel/UCNXt2MrZaqfIBknamqwzeXA) for that.*
 
-1) To start using the Command Handler after installation, we'll first need require djs-commands and create a new Command Handler with the proper folder name and prefixes.
+1 - To start using the Command Handler after installation, we'll first need require djs-commands and create a new Command Handler with the proper folder name and prefixes.
 
 ```js
 const { CommandHandler } = require("djs-commands")
 const CH = new CommandHandler({
-    folder: __dirname + '\\commands\\',
+    folder: __dirname + '/commands/',
     prefix: ['?', '??', 'tsc?']
   });
 ```
 
-2) Inside of the message event, we're going to do a little parsing and checking if they ran an available command or not.
+2 - Inside of the message event, we're going to do a little parsing and checking if they ran an available command or not.
 
 ```js
 bot.on("message", (message) => {
@@ -46,7 +46,7 @@ bot.on("message", (message) => {
 });
 ```
 
-3) And of course we're going to need a command file. So inside of your bot folder, create a folder called commands. I'm going to create a file called
+3 - And of course we're going to need a command file. So inside of your bot folder, create a folder called commands. I'm going to create a file called
 test.js and put the following code inside of it.
 
 ```js
@@ -76,6 +76,8 @@ module.exports = class test {
     * FIX: Fixed the loading system, added usage examples, and fixed index file.
 * 1.2.1
     * FIX: Forgot to change index.js file back to normal...
+* 1.2.2
+    * UPDATE: Fixed some documentation.
 
 
 [https://github.com/nedinator/djs-commands](https://github.com/nedinator/djs-commands)

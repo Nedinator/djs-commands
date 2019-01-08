@@ -1,7 +1,8 @@
 class CommandHandler {
     constructor(data = {}) {
-        if (!data.folder) throw new Error("No folder specified")
+        if (!data.folder) throw new Error("No folder specified.");
         this.folder = data.folder;
+        if(!data.prefix) throw new Error("No prefix specified.");
         if (!Array.isArray(data.prefix)) data.prefix = [data.prefix];
         data.prefix.sort((a, b) => a.length < b.length);
         this.prefix = data.prefix;
@@ -49,9 +50,9 @@ class CommandHandler {
 
         let prefixExists = false;
 
-        for (const p of this.prefix) {
-            if (string.startsWith(p)) {
-                prefix = p;
+        for (const x of this.prefix) {
+            if (string.startsWith(x)) {
+                prefix = x;
                 prefixExists = true;
                 break;
             }
