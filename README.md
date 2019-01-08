@@ -64,6 +64,8 @@ module.exports = class test {
 }
 ```
 
+4 - And that's it! You have a working command handler now for all the commands you could want!
+
 ## Release History
 
 * 1.0.0
