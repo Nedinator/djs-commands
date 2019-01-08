@@ -14,7 +14,7 @@ npm install djs-commands --save
 ```
 
 ## Setup guide
-*This is not a full Discord.JS bot tutorial. Please check out [TheSourceCode](https://www.youtube.com/channel/UCNXt2MrZaqfIBknamqwzeXA) for that.
+*This is not a full Discord.JS bot tutorial. Please check out [TheSourceCode](https://www.youtube.com/channel/UCNXt2MrZaqfIBknamqwzeXA) for that.*
 
 1) To start using the Command Handler after installation, we'll first need require djs-commands and create a new Command Handler with the proper folder name and prefixes.
 
