@@ -3,7 +3,7 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![Downloads Stats][npm-downloads]][npm-url]
-[discord-image][discord-link]
+[![Discord Stats][discord-image]][discord-url]
 
 Djs-commands currently includes a command handler for your Discord.JS bots.
 
