@@ -3,8 +3,9 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![Downloads Stats][npm-downloads]][npm-url]
+[![Discord Server][discord-image]][discord-link]
 
-Discordjs-commands is a NPM module that adds in a command handler and helpful functions
+Djs-commands currently includes a command handler for your Discord.JS bots.
 
 
 ## Installation
@@ -95,4 +96,6 @@ module.exports = class test {
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/djs-commands.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/djs-commands
-[npm-downloads]: https://img.shields.io/npm/dt/djs-commands.svg
+[discord-url]: http://www.discord.tscforum.com
+[npm-downloads]: https://img.shields.io/npm/dt/djs-commands.svg?style=flat-square
+[discord-image]: https://img.shields.io/discord/265499275088232448.svg?style=flat-square
