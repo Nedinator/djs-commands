@@ -32,7 +32,7 @@ const CH = new CommandHandler({
 ```js
 bot.on("message", (message) => {
     if(message.channel.type === 'dm') return;
-    if(message.author.type === 'bot') return;
+    if(message.author.bot) return;
     let args = message.content.split(" ");
     let command = args[0];
     let cmd = CH.getCommand(command);
