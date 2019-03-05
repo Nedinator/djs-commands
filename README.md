@@ -11,7 +11,7 @@ Djs-commands currently includes a command handler for your Discord.JS bots.
 ## Installation
 
 ```sh
-npm install djs-commands --save
+npm i djs-commands
 ```
 
 ## Setup guide
@@ -20,47 +20,36 @@ npm install djs-commands --save
 1 - To start using the Command Handler after installation, we'll first need require djs-commands and create a new Command Handler with the proper folder name and prefixes.
 
 ```js
-const { CommandHandler } = require("djs-commands")
-const CH = new CommandHandler({
-    folder: __dirname + '/commands/',
-    prefix: ['?', '??', 'tsc?']
-  });
+// const runCommand = require("djs-commands")(commands folder, prefixes);
+const runCommand = require("djs-commands")(__dirname + '/commands/', ['?', '??', 'tsc?']);
 ```
 
-2 - Inside of the message event, we're going to do a little parsing and checking if they ran an available command or not.
+2 - Inside of the message event, we're going to ran the command.
 
 ```js
-bot.on("message", (message) => {
-    if(message.channel.type === 'dm') return;
-    if(message.author.type === 'bot') return;
-    let args = message.content.split(" ");
-    let command = args[0];
-    let cmd = CH.getCommand(command);
-    if(!cmd) return;
-
-    try{
-        cmd.run(bot,message,args)
-    }catch(e){
-        console.log(e)
+bot.on("message", async message => {
+    if(!message.guild || message.author.bot) return;
+    try {
+        await runCommand(message);
+    } catch(e) {
+        console.log(e);
     }
-
-});
+})
 ```
 
-3 - And of course we're going to need a command file. So inside of your bot folder, create a folder called commands. I'm going to create a file called
-test.js and put the following code inside of it.
+3 - And of course we're going to need a command file. So inside of your bot folder, create a folder called commands. I'm going to create a file called test.js and put the following code inside of it.
 
 ```js
 module.exports = class test {
     constructor(){
             this.name = 'test',
-            this.alias = ['t'],
+            this.aliases = ['t'],
             this.usage = '?test'
     }
 
     async run(bot, message, args) {
         await message.delete();
-        message.reply(this.name + " worked!")
+        message.reply(this.name + " worked!");
     }
 }
 ```
@@ -81,7 +70,8 @@ module.exports = class test {
     * FIX: Forgot to change index.js file back to normal...
 * 1.2.2
     * UPDATE: Fixed some documentation.
-
+* 1.3.0
+    * Rewrite so it's easier to use
 
 [https://github.com/nedinator/djs-commands](https://github.com/nedinator/djs-commands)
 
