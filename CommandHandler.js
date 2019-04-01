@@ -69,13 +69,13 @@ class CommandHandler {
         //obviously if prefix is still false, we wanna stop.
         if (!prefixExists) return null;
         //grab the command without the prefix by getting the prefix length
-        const command = string.substring(prefix.length);
+        const command = string.toLowerCase().substring(prefix.length);
         //Check the command set from the _loadFrom function. if it doesn't exist we also check command against aliases then we return the cmd.
         let cmd = this.commands.get(command);
         if (!cmd) {
             const alias = this.aliases.get(command);
             if (!alias) return null;
-            cmd = this.commands.get(alias);
+            cmd = this.commands.get(alias.toLowerCase());
         }
         return cmd;
     }
