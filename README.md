@@ -3,7 +3,6 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![Downloads Stats][npm-downloads]][npm-url]
-[![Discord Stats][discord-image]][discord-url]
 
 Djs-commands currently includes a command handler for your Discord.JS bots.
 
@@ -96,6 +95,5 @@ module.exports = class test {
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/djs-commands.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/djs-commands
-[discord-url]: http://www.discord.tscforum.com
 [npm-downloads]: https://img.shields.io/npm/dt/djs-commands.svg?style=flat-square
 [discord-image]: https://img.shields.io/discord/265499275088232448.svg?style=flat-square
