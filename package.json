@@ -1,9 +1,45 @@
 {
-  "name": "djs-commands",
-  "version": "1.2.2",
-  "description": "An NPM Package to make creating new Discord.JS bots efficient",
-  "main": "index.js",
-  "dependencies": {
-    "fs": "0.0.1-security"
-  }
+	"name": "djs-commands",
+	"version": "2.0.0",
+	"description": "a command handler for slash commands on discordjs v14",
+	"main": "index.js",
+	"dependencies": {
+		"busboy": "^1.6.0",
+		"fast-deep-equal": "^3.1.3",
+		"discord-api-types": "^0.37.24",
+		"fs": "^0.0.1-security",
+		"discord.js": "^14.7.1",
+		"file-type": "^18.0.0",
+		"ieee754": "^1.2.1",
+		"inherits": "^2.0.4",
+		"readable-stream": "^3.6.0",
+		"peek-readable": "^5.0.0",
+		"readable-web-to-node-stream": "^3.0.2",
+		"lodash": "^4.17.21",
+		"safe-buffer": "^5.2.1",
+		"string_decoder": "^1.3.0",
+		"lodash.snakecase": "^4.1.1",
+		"token-types": "^5.0.1",
+		"streamsearch": "^1.1.0",
+		"strtok3": "^7.0.0",
+		"ts-mixer": "^6.0.2",
+		"util-deprecate": "^1.0.2",
+		"ws": "^8.11.0",
+		"undici": "^5.14.0",
+		"tslib": "^2.4.1"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Nedinator/djs-commands.git"
+	},
+	"author": "nedinator",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Nedinator/djs-commands/issues"
+	},
+	"homepage": "https://github.com/Nedinator/djs-commands#readme"
 }

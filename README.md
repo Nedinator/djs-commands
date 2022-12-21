@@ -1,4 +1,5 @@
 # djs-commands
+
 > An NPM Package to make creating new Discord.JS bots efficiently
 
 [![NPM Version][npm-image]][npm-url]
@@ -6,81 +7,68 @@
 
 Djs-commands currently includes a command handler for your Discord.JS bots.
 
+## UPDATE v2.0.0 MAJOR CHANGE
+
+> Hi! So over the years this bot has become more and more deprecated, and with the switch to slash commands, I decided to accommodate for that. This update is mostly for me to continue to use the same handler I've used for years with actual support for the recent changes with Discordjs, but it still remains open source on github with the link below. As I release this update, there will be a YouTube tutorial on how to set it up, but notes will be added with on release.
 
 ## Installation
 
 ```sh
-npm install djs-commands --save
+npm install djs-commands discord.js @discordjs/builders
 ```
 
 ## Setup guide
-*This is not a full Discord.JS bot tutorial. Please check out [TheSourceCode](https://www.youtube.com/channel/UCNXt2MrZaqfIBknamqwzeXA) for that.*
 
-1 - To start using the Command Handler after installation, we'll first need require djs-commands and create a new Command Handler with the proper folder name and prefixes.
+_Video tutorial coming soon._
+
+1 - Require and create a CommandHandler instance
 
 ```js
-const { CommandHandler } = require("djs-commands")
+const { CommandHandler } = require('djs-commands');
 const CH = new CommandHandler({
-    folder: __dirname + '/commands/',
-    prefix: ['?', '??', 'tsc?']
-  });
+	folder: __dirname + '/commands/',
+});
 ```
 
-2 - Inside of the message event, we're going to do a little parsing and checking if they ran an available command or not.
+2 - In the interactionCreate event is where we will run our command
 
 ```js
-bot.on("message", (message) => {
-    if(message.channel.type === 'dm') return;
-    if(message.author.type === 'bot') return;
-    let args = message.content.split(" ");
-    let command = args[0];
-    let cmd = CH.getCommand(command);
-    if(!cmd) return;
+client.on('interactionCreate', async (interaction) => {
+	if (!interaction.isChatInputCommand()) return;
 
-    try{
-        cmd.run(bot,message,args)
-    }catch(e){
-        console.log(e)
-    }
-
+	let cmd = CH.getCommand(interaction.commandName);
+	if (!cmd) return;
+	try {
+		cmd.run(interaction);
+	} catch (e) {
+		console.log(e);
+	}
 });
 ```
 
 3 - And of course we're going to need a command file. So inside of your bot folder, create a folder called commands. I'm going to create a file called
 test.js and put the following code inside of it.
 
-```js
-module.exports = class test {
-    constructor(){
-            this.name = 'test',
-            this.alias = ['t'],
-            this.usage = '?test'
-    }
+The `this.slashCommand` option takes a `SlashCommandBuilder()` passed as a JSON type. You can add whatever slash command options you like here using [`@discordjs/builders`](https://discord.js.org/#/docs/builders/main/general/welcome).
 
-    async run(bot, message, args) {
-        await message.delete();
-        message.reply(this.name + " worked!")
-    }
-}
+```js
+const { SlashCommandBuilder } = require('@discordjs/builders');
+module.exports = class test {
+	constructor() {
+		(this.name = 'test'),
+			(this.slashCommand = new SlashCommandBuilder()
+				.setName('test')
+				.setDescription('A command to test stuff and things.')
+				.toJSON());
+	}
+
+	async run(interaction) {
+		await interaction.reply(this.name + ' works');
+	}
+};
 ```
 
 4 - And that's it! You have a working command handler now for all the commands you could want!
-
-## Release History
-
-* 1.0.0
-    * ADD: Readme, CommandHandler, and basic stuff I will need.
-* 1.1.0
-    * UPDATE: Changed system to work as module
-* 1.1.3
-    * UPDATE: Fixing file loader system
-* 1.2.0
-    * FIX: Fixed the loading system, added usage examples, and fixed index file.
-* 1.2.1
-    * FIX: Forgot to change index.js file back to normal...
-* 1.2.2
-    * UPDATE: Fixed some documentation.
-
 
 [https://github.com/nedinator/djs-commands](https://github.com/nedinator/djs-commands)
 
@@ -93,6 +81,7 @@ module.exports = class test {
 5. Create a new Pull Request
 
 <!-- Markdown link & img dfn's -->
+
 [npm-image]: https://img.shields.io/npm/v/djs-commands.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/djs-commands
 [npm-downloads]: https://img.shields.io/npm/dt/djs-commands.svg?style=flat-square
