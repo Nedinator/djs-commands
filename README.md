@@ -21,7 +21,14 @@ npm install djs-commands discord.js @discordjs/builders
 
 _Video tutorial coming soon._
 
-1 - Require and create a CommandHandler instance
+1 - Setup `.env` in the root folder of the bot
+
+```env
+CLIENT_ID=CLIENTIDHERE
+TOKEN=BOTTOKENHERE
+```
+
+2 - Require and create a CommandHandler instance
 
 ```js
 const { CommandHandler } = require('djs-commands');
@@ -30,7 +37,7 @@ const CH = new CommandHandler({
 });
 ```
 
-2 - In the interactionCreate event is where we will run our command
+3 - In the interactionCreate event is where we will run our command
 
 ```js
 client.on('interactionCreate', async (interaction) => {
@@ -46,10 +53,10 @@ client.on('interactionCreate', async (interaction) => {
 });
 ```
 
-3 - And of course we're going to need a command file. So inside of your bot folder, create a folder called commands. I'm going to create a file called
+4 - And of course we're going to need a command file. So inside of your bot folder, create a folder called commands. I'm going to create a file called
 test.js and put the following code inside of it.
 
-The `this.slashCommand` option takes a `SlashCommandBuilder()` passed as a JSON type. You can add whatever slash command options you like here using [`@discordjs/builders`](https://discord.js.org/#/docs/builders/main/general/welcome).
+The `this.slashCommand` option takes a `SlashCommandBuilder()` passed as a JSON type. You can add whatever slash command options you like here using [`@discordjs/builders`](https://discord.js.org/#/docs/builders/main/class/SlashCommandBuilder).
 
 ```js
 const { SlashCommandBuilder } = require('@discordjs/builders');
@@ -68,7 +75,32 @@ module.exports = class test {
 };
 ```
 
-4 - And that's it! You have a working command handler now for all the commands you could want!
+5 - And that's it! You have a working command handler now for all the commands you could want! Here's an example of how to add options to a slash command.
+
+```js
+const { SlashCommandBuilder } = require('@discordjs/builders');
+module.exports = class another {
+	constructor() {
+		(this.name = 'another'),
+			(this.slashCommand = new SlashCommandBuilder()
+				.setName('another')
+				.setDescription('Another command to test stuff and things.')
+				.addBooleanOption((option) =>
+					option
+						.setName('stuff')
+						.setDescription('a description')
+						.setRequired(true)
+				)
+				.toJSON());
+	}
+
+	async run(interaction) {
+		await interaction.reply(this.name + ' works');
+	}
+};
+```
+
+And then from there, you can add as many options or whatever type of option you wish using the link above.
 
 [https://github.com/nedinator/djs-commands](https://github.com/nedinator/djs-commands)
 
