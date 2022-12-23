@@ -18,7 +18,7 @@ Djs-commands currently includes a command handler for your Discord.JS bots.
 ## Installation
 
 ```sh
-npm install djs-commands discord.js @discordjs/builders
+npm install djs-commands discord.js @discordjs/builders dotenv
 ```
 
 ## Setup guide
