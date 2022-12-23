@@ -1,6 +1,6 @@
 # djs-commands
 
-> An NPM Package to make creating new Discord.JS bots efficiently
+> an all-in-one command handler package.
 
 [![NPM Version][npm-image]][npm-url]
 [![Downloads Stats][npm-downloads]][npm-url]
@@ -9,7 +9,11 @@ Djs-commands currently includes a command handler for your Discord.JS bots.
 
 ## UPDATE v2.0.0 MAJOR CHANGE
 
-> Hi! So over the years this bot has become more and more deprecated, and with the switch to slash commands, I decided to accommodate for that. This update is mostly for me to continue to use the same handler I've used for years with actual support for the recent changes with Discordjs, but it still remains open source on github with the link below. As I release this update, there will be a YouTube tutorial on how to set it up, but notes will be added with on release.
+> Hi! So over the years this bot has become more and more deprecated, and with the switch to slash commands, I decided to accommodate for that. This update is mostly for me to continue to use the same handler I've used for years with actual support for the recent changes with Discordjs, but it still remains open source on github with the link below.
+
+### djs-commands Discord Help Server
+
+> I set up a support server, it's minimal for now. I noticed a surge in downloads when I updated and assume many were from the videos and with it being extremely different, figured this would help. Also, any contribution questions/discussions can take place here. [Click here to join](https://discord.gg/s9nwfGqkrk)
 
 ## Installation
 
@@ -18,8 +22,6 @@ npm install djs-commands discord.js @discordjs/builders
 ```
 
 ## Setup guide
-
-_Video tutorial coming soon._
 
 1 - Setup `.env` in the root folder of the bot
 
