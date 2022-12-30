@@ -8,6 +8,14 @@ class CommandHandler {
 	constructor(data = {}) {
 		if (!data.folder) throw new Error('No folder specified.');
 		this.folder = data.folder;
+		if (!data.updateCommands) {
+			console.log(
+				'To update commands, add option `updateCommands: true` to handler constructor'
+			);
+			this.updateCommands = false;
+		} else {
+			this.updateCommands = data.updateCommands;
+		}
 		this._loadFrom(data.folder);
 	}
 
@@ -42,19 +50,22 @@ class CommandHandler {
 
 		console.log('Done loading commands!');
 		this.commands = commands;
+		if (this.updateCommands) {
+			const { REST, Routes } = require('discord.js');
 
-		const { REST, Routes } = require('discord.js');
+			require('dotenv').config();
+			const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
-		require('dotenv').config();
-		const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
-
-		try {
-			console.log('Started refreshing application (/) commands.');
-			await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), {
-				body: jsonCommands,
-			});
-		} catch (err) {
-			console.log(err);
+			try {
+				console.log('Started refreshing application (/) commands.');
+				await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), {
+					body: jsonCommands,
+				});
+			} catch (err) {
+				console.log(err);
+			}
+		} else {
+			console.log('Commands not registered based on constructor options.');
 		}
 	}
 
