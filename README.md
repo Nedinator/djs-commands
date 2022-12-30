@@ -36,6 +36,7 @@ TOKEN=BOTTOKENHERE
 const { CommandHandler } = require('djs-commands');
 const CH = new CommandHandler({
 	folder: __dirname + '/commands/',
+	updateCommands: true, //not including this or setting as false reverts to not updating commands.
 });
 ```
 

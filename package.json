@@ -1,6 +1,6 @@
 {
 	"name": "djs-commands",
-	"version": "2.0.3",
+	"version": "2.0.4",
 	"description": "a command handler for slash commands on discordjs v14",
 	"main": "index.js",
 	"dependencies": {
