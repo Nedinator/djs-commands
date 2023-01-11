@@ -7,15 +7,15 @@ class CommandHandler {
 
 	constructor(data = {}) {
 		if (!data.folder) throw new Error('No folder specified.');
+
 		this.folder = data.folder;
-		if (!data.updateCommands) {
-			console.log(
-				'To update commands, add option `updateCommands: true` to handler constructor'
-			);
-			this.updateCommands = false;
-		} else {
-			this.updateCommands = data.updateCommands;
-		}
+		this.globalCommandRefresh = data.globalCommandRefresh
+			? data.globalCommandRefresh
+			: false;
+		this.guildCommandRefresh = data.guildCommandRefresh
+			? data.guildCommandRefresh
+			: false;
+
 		this._loadFrom(data.folder);
 	}
 
@@ -48,14 +48,28 @@ class CommandHandler {
 			console.log(`Loaded command: '${name}'`);
 		}
 
-		console.log('Done loading commands!');
 		this.commands = commands;
-		if (this.updateCommands) {
-			const { REST, Routes } = require('discord.js');
+		const { REST, Routes } = require('discord.js');
 
-			require('dotenv').config();
-			const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+		require('dotenv').config();
+		const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
+		if (this.guildCommandRefresh == true) {
+			rest
+				.put(
+					Routes.applicationGuildCommands(
+						process.env.CLIENT_ID,
+						process.env.GUILD_ID
+					),
+					{
+						body: [],
+					}
+				)
+				.then(() => console.log('Successfully deleted all guild commands.'))
+				.catch(console.error);
+		}
+
+		if (this.globalCommandRefresh == true) {
 			try {
 				console.log('Started refreshing application (/) commands.');
 				await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), {
@@ -64,9 +78,9 @@ class CommandHandler {
 			} catch (err) {
 				console.log(err);
 			}
-		} else {
-			console.log('Commands not registered based on constructor options.');
 		}
+
+		console.log('Done loading commands!');
 	}
 
 	getCommand(string) {

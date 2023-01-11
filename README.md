@@ -27,6 +27,7 @@ npm install djs-commands discord.js @discordjs/builders dotenv
 
 ```env
 CLIENT_ID=CLIENTIDHERE
+GUILD_ID=CLIENTIDHERE
 TOKEN=BOTTOKENHERE
 ```
 
@@ -36,9 +37,11 @@ TOKEN=BOTTOKENHERE
 const { CommandHandler } = require('djs-commands');
 const CH = new CommandHandler({
 	folder: __dirname + '/commands/',
-	updateCommands: true, //not including this or setting as false reverts to not updating commands.
+	globalCommandRefresh: true, //not including this or setting as false reverts to not updating commands.
 });
 ```
+
+Another option is to use `guildCommandRefresh: true` to just refresh guild commands from the ID in `.env`.
 
 3 - In the interactionCreate event is where we will run our command
 
