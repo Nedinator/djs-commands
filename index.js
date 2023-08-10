@@ -9,9 +9,6 @@ class CommandHandler {
     if (!data.folder) throw new Error("No folder specified.");
 
     this.folder = data.folder;
-    this.globalCommandRefresh = data.globalCommandRefresh
-      ? data.globalCommandRefresh
-      : false;
     this.guildCommandRefresh = data.guildCommandRefresh
       ? data.guildCommandRefresh
       : false;
@@ -35,8 +32,8 @@ class CommandHandler {
     const jsFiles = files.filter((f) => f.endsWith(".js"));
 
     if (files.length <= 0) throw new Error("No commands to load!");
-    const fileAmount = `${jsFiles.length}`;
-    console.log(`Found ${fileAmount} files to load!\n`);
+
+    console.log(`Found ${jsFiles.length} files to load!\n`);
     let jsonCommands = [];
     for (const f of jsFiles) {
       const file = require(folder + f);
@@ -44,17 +41,25 @@ class CommandHandler {
 
       const name = cmd.name;
       commands.set(name, cmd);
-      jsonCommands = jsonCommands.concat(cmd.slashCommand);
+      jsonCommands = jsonCommands.concat(cmd.slashCommand.toJSON());
       console.log(`Loaded command: '${name}'`);
     }
 
-    this.commands = commands;
     const { REST, Routes } = require("discord.js");
 
-    require("dotenv").config();
     const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
 
-    if (this.guildCommandRefresh == true) {
+    this.commands = commands;
+    if (this.guildCommandRefresh === true) {
+      this.registerGuildCommands(jsonCommands, rest, Routes);
+    }
+    this.registerCommands(jsonCommands, rest, Routes);
+    console.log("Done loading commands!");
+  }
+
+  registerGuildCommands = async (jsonCommands, rest, Routes) => {
+    try {
+      console.log("Started refreshing GUILD application (/) commands");
       rest
         .put(
           Routes.applicationGuildCommands(
@@ -65,25 +70,25 @@ class CommandHandler {
             body: jsonCommands,
           }
         )
-        .then(() => console.log("Successfully deleted all guild commands."))
+        .then(() => console.log("Successfully refreshed guild (/) commands."))
         .catch(console.error);
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    if (this.globalCommandRefresh == true) {
-      try {
-        console.log("Started refreshing application (/) commands.");
-        await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), {
-          body: jsonCommands,
-        });
-      } catch (err) {
-        console.log(err);
-      }
+  registerCommands = async (jsonCommands, rest, Routes) => {
+    try {
+      console.log("Started refreshing application (/) commands.");
+      await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), {
+        body: jsonCommands,
+      });
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    console.log("Done loading commands!");
-  }
-
-  getCommand(string) {
+  getCommand = (string) => {
     //Check if the string even exists before we get started.
     if (!string) return null;
 
@@ -91,7 +96,7 @@ class CommandHandler {
     let cmd = this.commands.get(string);
     if (!cmd) return null;
     return cmd;
-  }
+  };
 }
 
 module.exports = {

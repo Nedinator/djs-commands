@@ -34,10 +34,10 @@ TOKEN=BOTTOKENHERE
 2 - Require and create a CommandHandler instance
 
 ```js
-const { CommandHandler } = require('djs-commands');
+const { CommandHandler } = require("djs-commands");
 const CH = new CommandHandler({
-	folder: __dirname + '/commands/',
-	globalCommandRefresh: true, //not including this or setting as false reverts to not updating commands.
+  folder: __dirname + "/commands/",
+  guildCommandRefresh: true, //not including this or setting as false reverts to not updating GUILD commands.
 });
 ```
 
@@ -46,16 +46,16 @@ Another option is to use `guildCommandRefresh: true` to just refresh guild comma
 3 - In the interactionCreate event is where we will run our command
 
 ```js
-client.on('interactionCreate', async (interaction) => {
-	if (!interaction.isChatInputCommand()) return;
+client.on("interactionCreate", async (interaction) => {
+  if (!interaction.isChatInputCommand()) return;
 
-	let cmd = CH.getCommand(interaction.commandName);
-	if (!cmd) return;
-	try {
-		cmd.run(interaction);
-	} catch (e) {
-		console.log(e);
-	}
+  let cmd = CH.getCommand(interaction.commandName);
+  if (!cmd) return;
+  try {
+    cmd.run(interaction);
+  } catch (e) {
+    console.log(e);
+  }
 });
 ```
 
@@ -65,44 +65,42 @@ test.js and put the following code inside of it.
 The `this.slashCommand` option takes a `SlashCommandBuilder()` passed as a JSON type. You can add whatever slash command options you like here using [`@discordjs/builders`](https://discord.js.org/#/docs/builders/main/class/SlashCommandBuilder).
 
 ```js
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder } = require("@discordjs/builders");
 module.exports = class test {
-	constructor() {
-		(this.name = 'test'),
-			(this.slashCommand = new SlashCommandBuilder()
-				.setName('test')
-				.setDescription('A command to test stuff and things.')
-				.toJSON());
-	}
+  constructor() {
+    (this.name = "test"),
+      (this.slashCommand = new SlashCommandBuilder()
+        .setName("test")
+        .setDescription("A command to test stuff and things."));
+  }
 
-	async run(interaction) {
-		await interaction.reply(this.name + ' works');
-	}
+  async run(interaction) {
+    await interaction.reply(this.name + " works");
+  }
 };
 ```
 
 5 - And that's it! You have a working command handler now for all the commands you could want! Here's an example of how to add options to a slash command.
 
 ```js
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder } = require("@discordjs/builders");
 module.exports = class another {
-	constructor() {
-		(this.name = 'another'),
-			(this.slashCommand = new SlashCommandBuilder()
-				.setName('another')
-				.setDescription('Another command to test stuff and things.')
-				.addBooleanOption((option) =>
-					option
-						.setName('stuff')
-						.setDescription('a description')
-						.setRequired(true)
-				)
-				.toJSON());
-	}
+  constructor() {
+    (this.name = "another"),
+      (this.slashCommand = new SlashCommandBuilder()
+        .setName("another")
+        .setDescription("Another command to test stuff and things.")
+        .addBooleanOption((option) =>
+          option
+            .setName("stuff")
+            .setDescription("a description")
+            .setRequired(true)
+        ));
+  }
 
-	async run(interaction) {
-		await interaction.reply(this.name + ' works');
-	}
+  async run(interaction) {
+    await interaction.reply(this.name + " works");
+  }
 };
 ```
 
