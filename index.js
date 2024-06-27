@@ -1,3 +1,5 @@
+const fs = require("fs");
+const { REST, Routes } = require("discord.js");
 class CommandHandler {
   /**
    *Creates an instance of CommandHandler.
@@ -18,8 +20,6 @@ class CommandHandler {
 
   async _loadFrom(folder) {
     const commands = new Map();
-
-    const fs = require("fs");
 
     const files = fs.readdirSync(folder);
     files
@@ -44,8 +44,6 @@ class CommandHandler {
       jsonCommands = jsonCommands.concat(cmd.slashCommand.toJSON());
       console.log(`Loaded command: '${name}'`);
     }
-
-    const { REST, Routes } = require("discord.js");
 
     const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
 
