@@ -21,14 +21,7 @@ class CommandHandler {
   async _loadFrom(folder) {
     const commands = new Map();
 
-    const files = fs.readdirSync(folder);
-    files
-      .filter((f) => fs.statSync(folder + f).isDirectory())
-      .forEach((nested) =>
-        fs
-          .readdirSync(folder + nested)
-          .forEach((f) => files.push(nested + "/" + f))
-      );
+    const files = this._getAllFiles(folder);
     const jsFiles = files.filter((f) => f.endsWith(".js"));
 
     if (files.length <= 0) throw new Error("No commands to load!");
@@ -36,7 +29,7 @@ class CommandHandler {
     console.log(`Found ${jsFiles.length} files to load!\n`);
     let jsonCommands = [];
     for (const f of jsFiles) {
-      const file = require(folder + f);
+      const file = require(path.join(folder, f));
       const cmd = new file();
 
       const name = cmd.name;
@@ -49,9 +42,9 @@ class CommandHandler {
 
     this.commands = commands;
     if (this.guildCommandRefresh === true) {
-      this.registerGuildCommands(jsonCommands, rest, Routes);
+      await this.registerGuildCommands(jsonCommands, rest, Routes);
     }
-    this.registerCommands(jsonCommands, rest, Routes);
+    await this.registerCommands(jsonCommands, rest, Routes);
     console.log("Done loading commands!");
   }
 
@@ -72,10 +65,10 @@ class CommandHandler {
     return results;
   }
 
-  registerGuildCommands = async (jsonCommands, rest, Routes) => {
+  async registerGuildCommands(jsonCommands, rest, Routes) {
     try {
       console.log("Started refreshing GUILD application (/) commands");
-      rest
+      await rest
         .put(
           Routes.applicationGuildCommands(
             process.env.CLIENT_ID,
@@ -92,7 +85,7 @@ class CommandHandler {
     }
   };
 
-  registerCommands = async (jsonCommands, rest, Routes) => {
+  async registerCommands(jsonCommands, rest, Routes) {
     try {
       console.log("Started refreshing application (/) commands.");
       await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), {
@@ -104,13 +97,8 @@ class CommandHandler {
   };
 
   getCommand = (string) => {
-    //Check if the string even exists before we get started.
     if (!string) return null;
-
-    //Using the string from the interaction, get the cmd from the commands set and return if not null
-    let cmd = this.commands.get(string);
-    if (!cmd) return null;
-    return cmd;
+      return this.commands.get(string) || null;
   };
 }
 
