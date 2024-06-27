@@ -1,5 +1,7 @@
 const fs = require("fs");
+const path = require('path');
 const { REST, Routes } = require("discord.js");
+
 class CommandHandler {
   /**
    *Creates an instance of CommandHandler.
@@ -11,9 +13,7 @@ class CommandHandler {
     if (!data.folder) throw new Error("No folder specified.");
 
     this.folder = data.folder;
-    this.guildCommandRefresh = data.guildCommandRefresh
-      ? data.guildCommandRefresh
-      : false;
+    this.guildCommandRefresh = !!data.guildCommandRefresh;
 
     this._loadFrom(data.folder);
   }
@@ -53,6 +53,23 @@ class CommandHandler {
     }
     this.registerCommands(jsonCommands, rest, Routes);
     console.log("Done loading commands!");
+  }
+
+  _getAllFiles(dir) {
+    let results = [];
+
+    const list = fs.readdirSync(dir);
+    list.forEach((file) => {
+      file = path.join(dir, file);
+      const stat = fs.statSync(file);
+      if (stat && stat.isDirectory()) {
+        results = results.concat(this._getAllFiles(file));
+      } else {
+        results.push(file);
+      }
+    });
+
+    return results;
   }
 
   registerGuildCommands = async (jsonCommands, rest, Routes) => {
