@@ -1,0 +1,36 @@
+{
+  "name": "djs-commands",
+  "version": "3.1.0",
+  "description": "a command handler for slash commands on discordjs with typescript support",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "peerDependencies": {
+    "discord.js": "^14.25.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.37",
+    "eslint": "^8.49.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nedinator/djs-commands.git"
+  },
+  "author": "nedinator",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nedinator/djs-commands/issues"
+  },
+  "homepage": "https://github.com/Nedinator/djs-commands#readme",
+  "files": [
+    "index.js",
+    "README.md"
+  ]
+}
