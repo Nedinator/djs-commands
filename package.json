@@ -8,6 +8,7 @@
     "discord.js": "^14.25.1"
   },
   "devDependencies": {
+    "discord.js": "^14.25.1",
     "@types/node": "^20.19.37",
     "eslint": "^8.49.0",
     "prettier": "^3.0.0",
