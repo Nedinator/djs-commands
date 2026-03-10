@@ -23,7 +23,7 @@ npm install djs-commands
 
 ```js
 const { CommandHandler } = require("djs-commands");
-const handler = new CommandHandler(client, token, folder_path);
+const handler = new CommandHandler({ client, token, folder_path });
 ```
 
 2 - In the interactionCreate event is where we will run our command
