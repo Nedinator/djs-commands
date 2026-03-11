@@ -74,8 +74,7 @@ export class CommandHandler {
 
       if (stat.isDirectory())
         results = results.concat(this._getFiles(fullPath));
-      else if (file.endsWith(".js") || file.endsWith(".ts"))
-        results.push(fullPath);
+      else if (file.endsWith(".js")) results.push(fullPath);
     }
 
     return results;
