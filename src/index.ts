@@ -37,7 +37,7 @@ export class CommandHandler {
     const jsonCommands = this._loadFiles();
 
     if (this.updateCommands) {
-      this.client.once("ready", async () => {
+      this.client.once("clientReady", async () => {
         await this.deploy(jsonCommands);
       });
     }
