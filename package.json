@@ -8,11 +8,14 @@
     "discord.js": "^14.25.1"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^20.19.37",
     "discord.js": "^14.25.1",
-    "eslint": "^8.49.0",
+    "eslint": "^8.57.1",
+    "globals": "^17.4.0",
     "prettier": "^3.0.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.0"
   },
   "scripts": {
     "build": "tsc",
@@ -29,6 +32,11 @@
   "bugs": {
     "url": "https://github.com/Nedinator/djs-commands/issues"
   },
+  "keywords": [
+    "discord.js",
+    "command",
+    "handler"
+  ],
   "homepage": "https://github.com/Nedinator/djs-commands#readme",
   "files": [
     "index.js",

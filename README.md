@@ -7,7 +7,7 @@ an all-in-one command handler package.
 
 ### 3.1.0 Notice
 
-> I've added typescript support, and it currently works just the same with vanilla discord.js. Working on a typescript test bot to truely ensure safety. Feel free to jump in on this!
+> I've added typescript support, and it currently works just the same with vanilla discord.js. Only example I have going for a Typescript bot is [https://github.com/nedinator/MMOCord](https://github.com/nedinator/MMOCord)
 
 ## Installation
 
